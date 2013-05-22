@@ -17,11 +17,17 @@ Available under the MIT License
         }, options);
 
         return this.each(function() {
+            // Find some frequently used elements
             var $this = $(this);
-            var $slides = $('#slideshow li');
+            var $slides = $this.find('ul li');
+            var $images = $this.find('img');
 
-            // Only show first image
+            // Hide slides except first
             $slides.not(':first').hide();
+
+            // Set the dimensions of the images
+            $images.width(settings.width).height(settings.height);
+
         });
 
     };
