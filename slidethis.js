@@ -18,8 +18,11 @@ Available under the MIT License
 
         return this.each(function() {
             // Find some frequently used elements
+            // The element containing the slide show (#slideshow)
             var $this = $(this);
+            // The slides in an unordered list
             var $slides = $this.find('ul li');
+            // The images in the slide elements
             var $images = $this.find('img');
 
             // Hide slides except first
@@ -27,6 +30,36 @@ Available under the MIT License
 
             // Set the dimensions of the images
             $images.width(settings.width).height(settings.height);
+
+            // Create and add the pager
+            if (settings.pager) {
+                $this.append('<ul id="pager"/>');
+                $slides.each(function(i) {
+                    i+=1;
+                    // Unique ID to the slide
+                    $(this).attr('id', 'slide-' + i);
+                    // Append an element for each slide to the pager
+                    $('#pager').append('<li><span>' + i + '</span></li>');
+                })
+                $('#pager span:first').addClass('active');
+
+                // Define the click event on the pager
+                var $page = $('#pager span');
+                $page.click(function() {
+                    // Find the slide corresponding to the page clicked
+                    var $next = $('#slide-' + $(this).html());
+
+                    if ($next.is(':hidden')) {
+                        // Replace current slide with next slide
+                        $slides.fadeOut(settings.speed);
+                        $next.fadeIn(settings.speed);
+
+                        // Update the pager
+                        $page.removeClass('active');
+                        $(this).addClass('active');
+                    }
+                })
+            }
 
         });
 
