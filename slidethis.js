@@ -17,7 +17,11 @@ Available under the MIT License
         }, options);
 
         return this.each(function() {
-            // Future home of SlideThis
+            var $this = $(this);
+            var $slides = $('#slideshow li');
+
+            // Only show first image
+            $slides.not(':first').hide();
         });
 
     };
