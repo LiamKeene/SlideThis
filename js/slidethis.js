@@ -19,14 +19,13 @@ Available under the MIT License
         // Current index of the slideshow
         var index  = 0;
 
-        // With no auto mode, we must have the pager
+        // When auto mode is not set, force pager
         if (!settings.auto && !settings.pager) { settings.pager = true; };
 
         return this.each(function() {
-            // Find some frequently used elements
-            // The element containing the slide show (#slideshow)
+            // The element containing the slide show
             var $this = $(this);
-            // The slides in an unordered list
+            // The slides
             var $slides = $this.find('ul li');
             // The pager
             var $pager = $('<ul id="pager"/>');
@@ -47,12 +46,10 @@ Available under the MIT License
             if (settings.pager) {
                 $this.append($pager);
                 $slides.each(function(i) {
-                    // Append an element for each slide to the pager
                     $pager.append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
-                })
+                });
                 $pager.find('span:first').addClass('active');
 
-                // Define the click event on the pager
                 var $page = $('#pager span');
                 $page.click(function() {
                     // Find the slide corresponding to the page clicked
@@ -60,43 +57,44 @@ Available under the MIT License
                     var $next = $('#slide-' + index);
 
                     if ($next.is(':hidden')) {
-                        // Replace current slide with next slide
+                        // Show next slide
                         show_slide($slides, $next);
-
                         // Update the pager
                         update_pager(index);
-                    }
-                })
-            }
+                    };
+                });
+            };
 
             // Run automatically
             if (settings.auto) {
-                var auto = setInterval(function() {
-                    // Send current slide to end of slideshow
-                    next_index = (index + 1 < $slides.length) ? index + 1 : 0
+                setInterval(function() {
+                    // Get index of next slide (cycling back to 0 when required)
+                    var next_index = (index + 1 < $slides.length) ? index + 1 : 0;
+
+                    // Show the next slide
                     show_slide($slides.eq(index), $slides.eq(next_index));
 
-                    // Update pager
+                    // Update the pager if used
                     if (settings.pager) {
                         update_pager(next_index);
                     }
 
                     // Update the index
                     index = next_index;
-                }, settings.timeout)
-            }
+                }, settings.timeout);
+            };
 
-            show_slide = function(current, next) {
+            var show_slide = function(current, next) {
+                // Animate the transition from current to next element
                 current.fadeOut(settings.speed);
                 next.fadeIn(settings.speed);
-            }
+            };
 
-            update_pager = function(i) {
+            var update_pager = function(i) {
+                // Remove active class and add to indexed element
                 $('#pager span').removeClass('active');
                 $('#pager span').eq(i).addClass('active');
-            }
+            };
         });
-
     };
-
 }(jQuery));
