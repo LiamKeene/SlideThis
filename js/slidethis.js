@@ -91,7 +91,7 @@ Available under the MIT License
             }
 
             update_pager = function(current, next) {
-                current.removeClass('active');
+                $('#pager span').removeClass('active');
                 next.addClass('active');
             }
         });
