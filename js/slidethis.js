@@ -16,6 +16,9 @@ Available under the MIT License
             'height': 300,      // Integer: height (in px) of the slideshow (300)
         }, options);
 
+        // Current index of the slideshow
+        var index  = 0;
+
         // With no auto mode, we must have the pager
         if (!settings.auto && !settings.pager) { settings.pager = true; };
 
@@ -27,7 +30,6 @@ Available under the MIT License
             var $slides = $this.find('ul li');
             // Add unique ID to each slide
             $slides.each(function(i) {
-                i+=1;
                 $(this).attr('id', 'slide-' + i);
             });
 
@@ -42,7 +44,6 @@ Available under the MIT License
             if (settings.pager) {
                 $this.append('<ul id="pager"/>');
                 $slides.each(function(i) {
-                    i+=1;
                     // Append an element for each slide to the pager
                     $('#pager').append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
                 })
@@ -52,7 +53,8 @@ Available under the MIT License
                 var $page = $('#pager span');
                 $page.click(function() {
                     // Find the slide corresponding to the page clicked
-                    var $next = $('#slide-' + $(this).html());
+                    index = $('#pager span').index($(this));
+                    var $next = $('#slide-' + index);
 
                     if ($next.is(':hidden')) {
                         // Replace current slide with next slide
@@ -68,15 +70,18 @@ Available under the MIT License
             if (settings.auto) {
                 var auto = setInterval(function() {
                     // Send current slide to end of slideshow
-                    $slides.filter(':first-child').fadeOut(settings.speed)
-                        .next('li').fadeIn(settings.speed)
-                        .end().appendTo($slides.parent());
-                    // If there is a pager, update it
+                    next_index = (index + 1 < $slides.length) ? index + 1 : 0
+                    show_slide($slides.eq(index), $slides.eq(next_index));
+
+                    // Update pager
                     if (settings.pager) {
-                        $page = $('#pager')
-                            .find('#goto-' + $slides.filter(':first-child').attr('id'))
-                        update_pager($('#pager span'), $page)
+                        $page = $('#pager').find('#goto-slide-' + index);
+                        $next_page = $('#pager').find('#goto-slide-' + next_index);
+                        update_pager($page, $next_page);
                     }
+
+                    // Update the index
+                    index = next_index;
                 }, settings.timeout)
             }
 
