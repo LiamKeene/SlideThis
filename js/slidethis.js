@@ -72,6 +72,12 @@ Available under the MIT License
                     $slides.filter(':first-child').fadeOut(settings.speed)
                         .next('li').fadeIn(settings.speed)
                         .end().appendTo($slides.parent());
+                    // If there is a pager, update it
+                    if (settings.pager) {
+                        $page = $('#pager')
+                            .find('#goto-' + $slides.filter(':first-child').attr('id'))
+                        update_pager($('#pager span'), $page)
+                    }
                 }, settings.timeout)
             }
 
