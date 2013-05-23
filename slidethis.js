@@ -16,6 +16,9 @@ Available under the MIT License
             'height': 300,      // Integer: height (in px) of the slideshow (300)
         }, options);
 
+        // With no auto mode, we must have the pager
+        if (!settings.auto && !settings.pager) { settings.pager = true; };
+
         return this.each(function() {
             // Find some frequently used elements
             // The element containing the slide show (#slideshow)
