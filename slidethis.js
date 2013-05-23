@@ -61,6 +61,15 @@ Available under the MIT License
                 })
             }
 
+            // Run automatically
+            if (settings.auto) {
+                var auto = setInterval(function() {
+                    // Send current slide to end of slideshow
+                    $slides.filter(':first-child').fadeOut(settings.speed)
+                        .next('li').fadeIn(settings.speed)
+                        .end().appendTo($slides.parent());
+                }, settings.timeout)
+            }
         });
 
     };
