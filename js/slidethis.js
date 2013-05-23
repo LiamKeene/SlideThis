@@ -61,7 +61,7 @@ Available under the MIT License
                         show_slide($slides, $next);
 
                         // Update the pager
-                        update_pager($page, $(this));
+                        update_pager(index);
                     }
                 })
             }
@@ -75,9 +75,7 @@ Available under the MIT License
 
                     // Update pager
                     if (settings.pager) {
-                        $page = $('#pager').find('#goto-slide-' + index);
-                        $next_page = $('#pager').find('#goto-slide-' + next_index);
-                        update_pager($page, $next_page);
+                        update_pager(next_index);
                     }
 
                     // Update the index
@@ -90,9 +88,9 @@ Available under the MIT License
                 next.fadeIn(settings.speed);
             }
 
-            update_pager = function(current, next) {
+            update_pager = function(i) {
                 $('#pager span').removeClass('active');
-                next.addClass('active');
+                $('#pager span').eq(i).addClass('active');
             }
         });
 
