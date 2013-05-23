@@ -57,8 +57,7 @@ Available under the MIT License
 
                     if ($next.is(':hidden')) {
                         // Replace current slide with next slide
-                        $slides.fadeOut(settings.speed);
-                        $next.fadeIn(settings.speed);
+                        show_slide($slides, $next);
 
                         // Update the pager
                         update_pager($page, $(this));
@@ -74,6 +73,11 @@ Available under the MIT License
                         .next('li').fadeIn(settings.speed)
                         .end().appendTo($slides.parent());
                 }, settings.timeout)
+            }
+
+            show_slide = function(current, next) {
+                current.fadeOut(settings.speed);
+                next.fadeIn(settings.speed);
             }
 
             update_pager = function(current, next) {
