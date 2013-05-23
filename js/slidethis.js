@@ -27,6 +27,11 @@ Available under the MIT License
             var $slides = $this.find('ul li');
             // The images in the slide elements
             var $images = $this.find('img');
+            // Add unique ID to each slide
+            $slides.each(function(i) {
+                i+=1;
+                $(this).attr('id', 'slide-' + i);
+            });
 
             // Hide slides except first
             $slides.not(':first').hide();
@@ -39,8 +44,6 @@ Available under the MIT License
                 $this.append('<ul id="pager"/>');
                 $slides.each(function(i) {
                     i+=1;
-                    // Unique ID to the slide
-                    $(this).attr('id', 'slide-' + i);
                     // Append an element for each slide to the pager
                     $('#pager').append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
                 })
