@@ -28,6 +28,9 @@ Available under the MIT License
             var $this = $(this);
             // The slides in an unordered list
             var $slides = $this.find('ul li');
+            // The pager
+            var $pager = $('<ul id="pager"/>');
+
             // Add unique ID to each slide
             $slides.each(function(i) {
                 $(this).attr('id', 'slide-' + i);
@@ -42,7 +45,7 @@ Available under the MIT License
 
             // Create and add the pager
             if (settings.pager) {
-                $this.append('<ul id="pager"/>');
+                $this.append($pager);
                 $slides.each(function(i) {
                     // Append an element for each slide to the pager
                     $('#pager').append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
