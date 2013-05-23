@@ -48,15 +48,15 @@ Available under the MIT License
                 $this.append($pager);
                 $slides.each(function(i) {
                     // Append an element for each slide to the pager
-                    $('#pager').append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
+                    $pager.append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
                 })
-                $('#pager span:first').addClass('active');
+                $pager.find('span:first').addClass('active');
 
                 // Define the click event on the pager
                 var $page = $('#pager span');
                 $page.click(function() {
                     // Find the slide corresponding to the page clicked
-                    index = $('#pager span').index($(this));
+                    index = $page.index($(this));
                     var $next = $('#slide-' + index);
 
                     if ($next.is(':hidden')) {
