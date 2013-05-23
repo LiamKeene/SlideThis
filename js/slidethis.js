@@ -25,8 +25,6 @@ Available under the MIT License
             var $this = $(this);
             // The slides in an unordered list
             var $slides = $this.find('ul li');
-            // The images in the slide elements
-            var $images = $this.find('img');
             // Add unique ID to each slide
             $slides.each(function(i) {
                 i+=1;
@@ -36,8 +34,9 @@ Available under the MIT License
             // Hide slides except first
             $slides.not(':first').hide();
 
-            // Set the dimensions of the images
-            $images.width(settings.width).height(settings.height);
+            // Set the dimensions of the slideshow elements
+            $this.width(settings.width).height(settings.height);
+            $this.find('ul, li img').width(settings.width).height(settings.height);
 
             // Create and add the pager
             if (settings.pager) {
