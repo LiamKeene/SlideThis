@@ -42,7 +42,7 @@ Available under the MIT License
                     // Unique ID to the slide
                     $(this).attr('id', 'slide-' + i);
                     // Append an element for each slide to the pager
-                    $('#pager').append('<li><span>' + i + '</span></li>');
+                    $('#pager').append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
                 })
                 $('#pager span:first').addClass('active');
 
@@ -58,8 +58,7 @@ Available under the MIT License
                         $next.fadeIn(settings.speed);
 
                         // Update the pager
-                        $page.removeClass('active');
-                        $(this).addClass('active');
+                        update_pager($page, $(this));
                     }
                 })
             }
@@ -72,6 +71,11 @@ Available under the MIT License
                         .next('li').fadeIn(settings.speed)
                         .end().appendTo($slides.parent());
                 }, settings.timeout)
+            }
+
+            update_pager = function(current, next) {
+                current.removeClass('active');
+                next.addClass('active');
             }
         });
 
