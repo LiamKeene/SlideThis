@@ -3,8 +3,8 @@
 > A jQuery plugin for displaying images as a slideshow.
 
 ## About
-The design aim is to be as small as possible providing the most basic
-functionality.
+The design aim is to be as small as possible, currently 1045 bytes when
+minimised and provide the most basic functionality.
 
 ## Usage
 To use this plugin jQuery needs to be included, either via an online resource
@@ -13,7 +13,7 @@ the CSS file.
 
 ```html
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
-<script src='js/jquery.slidethis.js'></script>
+<script src='js/jquery.slidethis.min.js'></script>
 <link href='css/slidethis.css' rel='stylesheet' />
 ```
 
