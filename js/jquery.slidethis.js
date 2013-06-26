@@ -12,8 +12,6 @@ Available under the MIT License
             'pager': true,      // Boolean: show pager for slides (true)
             'speed': 500,       // Integer: time (in ms) of transition (500)
             'timeout': 5000,    // Integer: time (in ms) between transitions (5000)
-            'width': 600,       // Integer: width (in px) of the slideshow (600)
-            'height': 300,      // Integer: height (in px) of the slideshow (300)
         }, options);
 
         // Current index of the slideshow
@@ -26,7 +24,7 @@ Available under the MIT License
             // The element containing the slide show
             var $this = $(this);
             // The slides
-            var $slides = $this.find('ul li');
+            var $slides = $this.find('li');
             // The pager
             var $pager = $('<ul id="pager"/>');
 
@@ -36,15 +34,11 @@ Available under the MIT License
             });
 
             // Hide slides except first
-            $slides.not(':first').hide();
-
-            // Set the dimensions of the slideshow elements
-            $this.width(settings.width).height(settings.height);
-            $this.find('ul, li img').width(settings.width).height(settings.height);
+            $slides.not(':first').addClass('hidden').hide();
 
             // Create and add the pager
             if (settings.pager) {
-                $this.append($pager);
+                $this.after($pager);
                 $slides.each(function(i) {
                     $pager.append('<li><span id="goto-slide-' + i + '">' + i + '</span></li>');
                 });
@@ -86,8 +80,8 @@ Available under the MIT License
 
             var show_slide = function(current, next) {
                 // Animate the transition from current to next element
-                current.fadeOut(settings.speed);
-                next.fadeIn(settings.speed);
+                current.fadeOut(settings.speed, function() { $(this).addClass('hidden') });
+                next.fadeIn(settings.speed, function() { $(this).removeClass('hidden') });
             };
 
             var update_pager = function(i) {
