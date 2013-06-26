@@ -24,8 +24,9 @@
   background: url(../img/pager.png);
   cursor: pointer;
   display: block;
-  height: 12px;
-  text-indent: -10000px;
+  height: 0px;
+  overflow: hidden;
+  padding-top: 12px;
   width: 12px;
 }
 #pager li span:hover {
