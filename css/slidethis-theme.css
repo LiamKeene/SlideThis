@@ -1,0 +1,39 @@
+/* SlideThis simple theme for the slideshow container and pager */
+#slideshow {
+  border: 10px solid #fff;
+  box-shadow: 0 5px 5px #666;
+  margin: 0 auto;
+  /* This is the known maximum width of the images */
+  max-width: 800px;
+}
+#slides {
+  margin: 0;
+}
+#pager {
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  top: 24px;
+  width: 48px;
+}
+#pager li {
+  float: left;
+  margin: 0 2px;
+}
+#pager li span {
+  background: url(../img/pager.png);
+  cursor: pointer;
+  display: block;
+  height: 12px;
+  text-indent: -10000px;
+  width: 12px;
+}
+#pager li span:hover {
+  background-position: 0 -12px;
+}
+#pager li span:active {
+  background-position: 0 -24px;
+}
+#pager li span.active {
+  background-position: 0 -24px;
+}

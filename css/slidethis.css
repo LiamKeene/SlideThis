@@ -1,42 +1,18 @@
-#slideshow {
-    border: 10px solid #fff;
-    box-shadow: 0 5px 5px #666;
+/* SlideThis required styles for displaying responsive slides */
+#slides {
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
 }
-#slideshow ul:first-child {
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
+#slides li {
+  float: left;
+  position: relative;
 }
-#slideshow ul:first-child li {
-    left: 0;
-    list-style: none;
-    position: absolute;
-    top: 0;
+#slides li.hidden {
+  float: none;
+  position: absolute;
 }
-#pager {
-    margin: 24px auto 0;
-    padding: 0;
-    width: 48px;
-}
-#pager li {
-    float: left;
-    margin: 0 2px;
-}
-#pager li span {
-    background: url(../img/pager.png);
-    cursor: pointer;
-    display: block;
-    height: 12px;
-    text-indent: -10000px;
-    width: 12px;
-}
-#pager li span:hover {
-    background-position: 0 -12px;
-}
-#pager li span:active {
-    background-position: 0 -24px;
-}
-#pager li span.active {
-    background-position: 0 -24px;
+#slides img {
+  width: 100%;
 }
