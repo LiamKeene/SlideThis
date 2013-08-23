@@ -7,12 +7,13 @@ The design aim is to be as small as possible and provide the most basic
 functionality.  The minimised plugin is currently 1000 bytes!
 
 ## Usage
-To use this plugin jQuery needs to be included, either from an online resource
-such as Google or a locally served location.  Next include the jQuery plugin
-file, and the CSS file.  This CSS is required to make the slides responsive to
-browser width and the transitions smooth.
+To use this plugin jQuery needs to be included, either from an online 
+resource such as Google or a locally served location.  Next include the 
+jQuery plugin file, and the CSS file.  This CSS is required to make the 
+slides responsive to browser width and the transitions smooth.
 
-An optional CSS theme can be included that styles the slideshow container and pager.
+An optional CSS theme can be included that styles the slideshow container 
+and pager.
 
 ```html
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
@@ -22,7 +23,8 @@ An optional CSS theme can be included that styles the slideshow container and pa
 <link href='css/slidethis-theme.css' rel='stylesheet' />
 ```
 
-In your markup create a `ul` element with the ID `slides` that contains the images.
+In your markup create a `ul` element with the ID `slides` that contains the 
+images.
 
 ```html
 <!-- The containing div is only needed if you use the optional theme -->
@@ -35,15 +37,40 @@ In your markup create a `ul` element with the ID `slides` that contains the imag
 </div>
 ```
 
-Finally call `.slidethis()` on the slides `ul` element.  Remember to either put
-the call inside a `$(document).ready()` block or at the end of your markup or
-the plugin will not run!
+Finally call `.slidethis()` on the `<ul id="slides">` element.  Remember to 
+either put the call inside a `$(document).ready()` block or at the end of 
+your markup or the plugin will not run!
 
 ```javascript
 $(document).ready(function() {
-    $("#slides").slidethis();
+  $("#slides").slidethis();
 });
 ```
+
+SlideThis can be used to animate more than just an unordered list of images, 
+it can also be used to animate the child elements within a container.
+
+````html
+<div id="articles">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+  <div>
+    <p>The first paragraph of content.</p>
+    <p>Another paragraph of content.</p>
+  </div>
+  <img src="image.png" />
+</div>
+````
+
+Calling `.slidethis()` on the `<div id="articles">` element, will animate 
+the children of that element.
+
+````javascript
+$("#articles").slidethis();
+````
+
+_NB_ Of course this won't style nicely with the included styles; you will 
+need to create your own (you should probably write some better styles in any 
+case!)
 
 ### Options
 

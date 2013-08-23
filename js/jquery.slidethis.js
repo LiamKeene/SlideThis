@@ -24,7 +24,7 @@ Available under the MIT License
             // The element containing the slide show
             var $this = $(this);
             // The slides
-            var $slides = $this.find('li');
+            var $slides = $this.children();
             // The pager
             var $pager = $('<ul id="pager"/>');
 
